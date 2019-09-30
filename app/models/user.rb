@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   after_create :load_tasks
 
-         has_many :todos
-         has_many :tasks, through: :todos
+  has_many :todos
+  has_many :tasks, through: :todos
 
 
 private
