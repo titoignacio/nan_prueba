@@ -1,33 +1,41 @@
-<div class="body mx-5">
-<% @todos.each_slice(3) do |todo| %>
-  <div class="card-deck">
-  <% todo.each do |todo| %>
-  <%if todo.completed? %>
-  <div class="card">
-  <%= image_tag todo.task.photo, class: 'card-img-top img-thumbnail' %>
-  <div class="card-body">
-    <h5 class="card-title"><%= todo.task.name  %></h5>
-    <%= link_to "Completado", update_todo_path(todo), method: :patch, class: "btn btn-outline-success" %>
-    <%= link_to 'ver detalle', todo_path(todo), class: "btn btn-outline-info" %>
-   </div>
-   <div class="card-footer">
-     <small class="text-muted"> <%= time_ago_in_words todo.updated_at %></small>
-   </div>
-   </div>
-   <% else %>
-<div class="card">
-  <%= image_tag todo.task.photo, class: 'card-img-top img-thumbnail' %>
-  <div class="card-body">
-    <h5 class="card-title"><%= todo.task.name  %></h5>
-    <%= link_to "No Completado", update_todo_path(todo), method: :patch, class: "btn btn-outline-danger" %>
-    <%= link_to 'ver detalle', todo_path(todo), class: "btn btn-outline-info" %>
-   </div>
-   <div class="card-footer">
-     <small class="text-muted"> <%= time_ago_in_words todo.updated_at %></small>
-   </div>
-   </div>
-   <% end %>
-   <% end %>
-</div>
+<h1>Tasks</h1>
+
+ <% if user_signed_in? %>
+ <div class="body mx-5">
+ <% @todos.each_slice(3) do |todo| %>
+   <div class="card-deck">
+   <% todo.each do |todo| %>
+   <%if todo.completed? %>
+   <div class="card">
+   <%= image_tag todo.task.photo, class: 'card-img-top img-thumbnail' %>
+   <div class="card-body">
+     <h5 class="card-title"><%= todo.task.name  %></h5>
+     <%= link_to "Completado", update_todo_path(todo), method: :patch, class: "btn btn-outline-success" %>
+     <%= link_to 'ver detalle', todo_path(todo), class: "btn btn-outline-info" %>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"> <%= time_ago_in_words todo.updated_at %></small>
+    </div>
+    </div>
+    <% else %>
+ <div class="card">
+   <%= image_tag todo.task.photo, class: 'card-img-top img-thumbnail' %>
+   <div class="card-body">
+     <h5 class="card-title"><%= todo.task.name  %></h5>
+     <%= link_to "No Completado", update_todo_path(todo), method: :patch, class: "btn btn-outline-danger" %>
+     <%= link_to 'ver detalle', todo_path(todo), class: "btn btn-outline-info" %>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"> <%= time_ago_in_words todo.updated_at %></small>
+    </div>
+    </div>
+    <% end %>
+    <% end %>
+ </div>
+ <% end %>
+ </div>
+
+<%else%>
+
+
 <% end %>
-</div>
