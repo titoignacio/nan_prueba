@@ -1,7 +1,7 @@
 <div class="body mx-5">
-<% @todos.each_slice(3) do |todos| %>
+<% @todos.each_slice(3) do |todo| %>
   <div class="card-deck">
-  <% todos.each do |todo| %>
+  <% todo.each do |todo| %>
   <%if todo.completed? %>
   <div class="card">
   <%= image_tag todo.task.photo, class: 'card-img-top img-thumbnail' %>
